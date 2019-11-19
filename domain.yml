@@ -1,0 +1,161 @@
+actions:
+- action_PersoHello
+- action_get_name
+- action_reminder
+- action_reminder_pre
+- action_test
+- utter_cheer_up
+- utter_comebacklater
+- utter_conseils
+- utter_did_that_help
+- utter_firstConversation
+- utter_firstgreet
+- utter_goodbye
+- utter_happy
+- utter_iamabot
+- utter_options
+- utter_preparer
+- utter_slot_values
+- utter_stresse
+- utter_thanks
+- action_J_1
+- action_J_2
+- utter_insultes
+- action_blagues
+- utter_compliments
+
+entities:
+- age
+- date
+- name
+- pathologie
+forms:
+- initialization_form
+intents:
+- firstConversation
+- give_age
+- dents_sagesse
+- affirm
+- gavename
+- give_date
+- stresse
+- greet
+- conseil_jour
+- preparation
+- deny
+- mood_happy
+- goodbye
+- mood_unhappy
+- bot_challenge
+- cancer_prostate
+- diabete2
+- ligaments_croises
+- prothese_hanche
+- thanks
+- insultes
+- blague
+- compliments
+
+slots:
+  age:
+    auto_fill: false
+    type: unfeaturized
+  date:
+    auto_fill: false
+    type: unfeaturized
+  name:
+    auto_fill: false
+    type: unfeaturized
+  pathologie:
+    type: categorical
+    values:
+    - dents de sagesse
+    - "ligaments crois\xE9s"
+    - cancer de la prostate
+    - "diab\xE8te de type 2"
+    - "proth\xE8se de hanche"
+  requested_slot:
+    type: unfeaturized
+templates:
+  utter_ask_age:
+  - text: Quel age as tu ?
+  utter_ask_date:
+  - text: "Quelle est la date de ton op\xE9ration (format JJ/MM/AA) ?"
+  utter_ask_name:
+  - text: Quel est ton nom ?
+  utter_ask_pathologie:
+  - buttons:
+    - payload: Dents de sagesse
+      title: Dents de sagesse
+    - payload: "Ligaments crois\xE9s"
+      title: "Ligaments crois\xE9s"
+    - payload: Cancer de la prostate
+      title: Cancer de la prostate
+    - payload: "Diab\xE8te de type 2"
+      title: "Diab\xE8te de type 2"
+    - payload: "Proth\xE8se de hanche"
+      title: "Proth\xE8se de hanche"
+    text: Quelle est ta pathologie ?
+  utter_cheer_up:
+  - image: https://i.imgur.com/nGF1K8f.jpg
+    text: "Voila quelque chose que j'aimerai te partager:"
+  utter_comebacklater:
+  - text: Pas de soucis, reviens vers moi quand tu en auras besoin :)
+  utter_conseils:
+  - text: "Pour bien pr\xE9parer ton op\xE9ration, il est important de se nourrir\
+      \ correctement car apr\xE8s tu n'auras pas beauoucp de choix !"
+  utter_did_that_help:
+  - text: "Cela t'a aid\xE9?"
+  utter_firstConversation:
+  - buttons:
+    - payload: oui
+      title: oui
+    - payload: non
+      title: non
+    text: "Je suis un accompagnant digital de sant\xE9, j'ai pour vocation de t'accompagner\
+      \ lors de toute ton hospitalisation afin de te garder en bonne sant\xE9. Veux-tu\
+      \ d\xE9marrer un accompagnement ?"
+  utter_firstgreet:
+  - text: Hey! Ravi de faire ta connaissance, comment vas tu ?
+  utter_goodbye:
+  - text: Bye
+  utter_happy:
+  - text: Top, je suis content pour toi !
+  utter_iamabot:
+  - text: "Je suis un robot, cr\xE9\xE9 par Dowi."
+  utter_options:
+  - buttons:
+    - payload: Conseil du jour
+      title: Conseil du jour
+    - payload: "se pr\xE9parer au mieux"
+      title: "se pr\xE9parer au mieux"
+    - payload: "Je suis stress\xE9"
+      title: "Je suis stress\xE9"
+    - payload: Une blague de chuck norris
+      title: Une blague de chuck norris
+    text: Comment puis-je t'aider aujourd'hui ?
+  utter_preparer:
+  - text: "Pour te pr\xE9parer au mieux il faut que tu arr\xEAtes de prendre d\u2019\
+      anti-inflammatoires 10 jours avant ton op\xE9ration parce que \u2026 Il faut\
+      \ \xEAtre \xE0 jeun le jour de l\u2019intervention. Cela implique \u2026 Le\
+      \ bloc op\xE9ratoire est une pi\xE8ce st\xE9rile. Pour respecter les consignes\
+      \ d\u2019hygi\xE8ne il faut que tu retires tes lentilles de contacts si tu en\
+      \ portes. De la m\xEAme mani\xE8re, tu ne dois pas porter de vernis \xE0 ongles\
+      \ et \xE9viter les bijoux. Enfin pour respecter les consignes d\u2019hygi\xE8\
+      ne, il faut que tu te douches \xE0 la b\xE9tadine le jour de ton op\xE9ration\
+      \ !"
+  utter_slot_values:
+  - text: "Enchant\xE9 de te rencontrer {name} ! Ton op\xE9ration sur la pathologie\
+      \ \"{pathologie}\" est le {date}. A {age} ans, ca ne devrait pas \xEAtre une\
+      \ grande \xE9preuve pour toi !"
+  utter_stresse:
+  - text: Relax, we are friends :)
+  utter_thanks:
+  - text: Avec plaisir :)
+  - text: Pas de soucis !
+  - text: "Je suis l\xE0 pour \xE7a :)"
+  utter_insultes:
+  - image: https://www.chosesasavoir.com/wp-content/uploads/2016/11/doigt-dhonneur.jpg
+    text: T'es pas cool :(
+  utter_compliments:
+  - text: T'es pas le premier à me le dire ;)
