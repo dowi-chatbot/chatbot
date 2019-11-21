@@ -15,6 +15,19 @@
 - oui
 - oui
 
+## intent:next_day
+- jour suivant
+- je veux changer de jour
+- passer au jour suivant 
+
+## intent:inter_local
+- [local](type_intervention)
+- mon intervention est [local](type_intervention)
+
+## intent:inter_général
+- [général](type_intervention)
+- mon intervention est [général](type_intervention)
+
 ## intent:bot_challenge
 - es tu un robot?
 - es tu un humain?

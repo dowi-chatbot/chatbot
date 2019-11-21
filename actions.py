@@ -48,7 +48,7 @@ class InitializationForm(FormAction):
 
 	@staticmethod
 	def required_slots(tracker: Tracker):
-		return ["name", "age", "pathologie", "date"]
+		return ["name", "age", "pathologie", "type_intervention", "date"]
 
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
 		dispatcher.utter_message("Top ! J'ai tout ce qu'il me faut.")
@@ -167,3 +167,39 @@ class ActionStresse(Action):
 		monUtt = mesC[random.randint(0,len(mesC)-1)]
 		dispatcher.utter_message(monUtt)
 		return[] 
+
+class ActionDefineTimer(Action):
+	def name(self) -> Text:
+		return "action_timer"
+
+	def run(self, dispatcher:CollectingDispatcher,tracker:Tracker,domain):
+		nbr_j_avant_ope = datetime.strptime(tracker.get_slot("date"),'%d/%m/%y') - datetime(datetime.now().year, datetime.now().month, datetime.now().day)
+		return[SlotSet("timer",-nbr_j_avant_ope.days)]
+
+class ActionChangeDay(Action):
+	def name(self) -> Text:
+		return "action_change_day"
+
+	def run(self, dispatcher:CollectingDispatcher,tracker:Tracker,domain):
+		jour = tracker.get_slot("timer") + 1
+		dispatcher.utter_message("Tu as changé de jour, nous sommes maintenant le jour "+str(jour)+" ! :)")
+		return[SlotSet("timer",jour)]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

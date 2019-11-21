@@ -23,12 +23,16 @@ actions:
 - utter_compliments
 - action_preparation
 - action_stresse
+- utter_ask_type_intervention
+- action_timer
+- action_change_day
 
 entities:
 - age
 - date
 - name
 - pathologie
+- type_intervention
 forms:
 - initialization_form
 intents:
@@ -55,8 +59,20 @@ intents:
 - insultes
 - blague
 - compliments
+- inter_local
+- inter_général
+- next_day
 
 slots:
+  timer: 
+    auto_fill: false
+    type: float
+  type_intervention:
+    auto_fill: false
+    type: categorical
+    values: 
+    - local
+    - général 
   age:
     auto_fill: false
     type: unfeaturized
@@ -77,6 +93,13 @@ slots:
   requested_slot:
     type: unfeaturized
 templates:
+  utter_ask_type_intervention:
+  - buttons:
+    - payload: local
+      title: Local 
+    - payload: général
+      title: Général 
+    text: Quel est le type de ton intervention ?
   utter_ask_age:
   - text: Quel age as tu ?
   utter_ask_date:
@@ -130,10 +153,12 @@ templates:
       title: "Je suis stress\xE9"
     - payload: Une blague de chuck norris
       title: Une blague de chuck norris
+    - payload: Jour suivant
+      title: jour suivant
     text: Comment puis-je t'aider aujourd'hui ?
   utter_slot_values:
   - text: "Enchant\xE9 de te rencontrer {name} ! Ton op\xE9ration sur la pathologie\
-      \ \"{pathologie}\" est le {date}. A {age} ans, ca ne devrait pas \xEAtre une\
+      \ \"{pathologie}\" en {type_intervention} est le {date}. On est donc à J{timer} de l'opération. A {age} ans, ca ne devrait pas \xEAtre une\
       \ grande \xE9preuve pour toi !"
   utter_thanks:
   - text: Avec plaisir 🙂

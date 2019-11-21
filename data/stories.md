@@ -43,14 +43,25 @@
     - slot{"pathologie": "Dents de sagesse"}
     - form: initialization_form
     - slot{"pathologie": "Dents de sagesse"}
+    - slot{"requested_slot": "type_intervention"}
+* form: inter_local{"type_intervention": "local"}
+    - slot{"type_intervention": "local"}
+    - form: initialization_form
+    - slot{"type_intervention": "local"}
     - slot{"requested_slot": "date"}
 * form: give_date{"date": "12/10/20"}
     - form: initialization_form
     - slot{"date": "12/10/20"}
     - form{"name": null}
     - slot{"requested_slot": null}
+    - action_timer
     - utter_slot_values
     - action_reminder_pre
+
+## change day
+* next_day
+    - action_change_day
+    - slot{"timer": -20}
 
 ## options
 * greet
