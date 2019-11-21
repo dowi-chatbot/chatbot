@@ -66,7 +66,7 @@ class ActionPersoHello(Action):
 			maListe = ["Hey ! Comment vas tu ?","Salut, tu vas bien ?","Tout va bien pour toi ?"]
 			monR = maListe[random.randint(0,2)]
 		else:
-			maListe = ["Hey "+name+" ! Comment vas tu ?","Salut "+name+", tu vas bien ?","De retour "+name+" + ! Tout va bien pour toi ?"]
+			maListe = ["Hey "+name+" ! Comment vas tu ?","Salut "+name+", tu vas bien ?","De retour "+name+"  ! Tout va bien pour toi ?"]
 			monR = maListe[random.randint(0,2)]
 		dispatcher.utter_message(monR)
 		
@@ -108,10 +108,62 @@ class ActionBlagues(Action):
 	def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain):
 		
 		r = requests.get("https://www.chucknorrisfacts.fr/api/get?data=tri:alea;nb:1")
-		r = r.text
-		r = r.replace('[','')
-		r = r.replace(']','')
+		r = r.text.replace('[','').replace(']','')
 		rj = json.loads(r)
 		dispatcher.utter_message(rj["fact"])
 		return[] 
 
+class ActionConseils(Action):
+	def name(self) -> Text:
+		return "action_conseils"
+
+	def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain):
+		
+		
+		db = open('data/db.json')
+		db_str = db.read()
+		monJ = json.loads(db_str)
+		mesC = []
+		for var in monJ["Conseils"]:
+		    if var["time"] in (0,2):
+		        mesC.append(var["text"])
+		monUtt = mesC[random.randint(0,len(mesC)-1)]
+		dispatcher.utter_message(monUtt)
+		return[] 
+
+
+
+class ActionPreparation(Action):
+	def name(self) -> Text:
+		return "action_preparation"
+
+	def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain):
+		
+		
+		db = open('data/db.json')
+		db_str = db.read()
+		monJ = json.loads(db_str)
+		mesC = []
+		for var in monJ["Preparation"]:
+		    mesC.append(var["text"])
+		monUtt = mesC[random.randint(0,len(mesC)-1)]
+		dispatcher.utter_message(monUtt)
+		return[] 
+
+
+class ActionStresse(Action):
+	def name(self) -> Text:
+		return "action_stresse"
+
+	def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain):
+		
+		
+		db = open('data/db.json')
+		db_str = db.read()
+		monJ = json.loads(db_str)
+		mesC = []
+		for var in monJ["Stresse"]:
+		    mesC.append(var["text"])
+		monUtt = mesC[random.randint(0,len(mesC)-1)]
+		dispatcher.utter_message(monUtt)
+		return[] 

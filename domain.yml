@@ -6,7 +6,7 @@ actions:
 - action_test
 - utter_cheer_up
 - utter_comebacklater
-- utter_conseils
+- action_conseils
 - utter_did_that_help
 - utter_firstConversation
 - utter_firstgreet
@@ -14,15 +14,15 @@ actions:
 - utter_happy
 - utter_iamabot
 - utter_options
-- utter_preparer
 - utter_slot_values
-- utter_stresse
 - utter_thanks
 - action_J_1
 - action_J_2
 - utter_insultes
 - action_blagues
 - utter_compliments
+- action_preparation
+- action_stresse
 
 entities:
 - age
@@ -100,10 +100,7 @@ templates:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: "Voila quelque chose que j'aimerai te partager:"
   utter_comebacklater:
-  - text: Pas de soucis, reviens vers moi quand tu en auras besoin :)
-  utter_conseils:
-  - text: "Pour bien pr\xE9parer ton op\xE9ration, il est important de se nourrir\
-      \ correctement car apr\xE8s tu n'auras pas beauoucp de choix !"
+  - text: Pas de soucis, reviens vers moi quand tu en auras besoin 🙂
   utter_did_that_help:
   - text: "Cela t'a aid\xE9?"
   utter_firstConversation:
@@ -134,28 +131,16 @@ templates:
     - payload: Une blague de chuck norris
       title: Une blague de chuck norris
     text: Comment puis-je t'aider aujourd'hui ?
-  utter_preparer:
-  - text: "Pour te pr\xE9parer au mieux il faut que tu arr\xEAtes de prendre d\u2019\
-      anti-inflammatoires 10 jours avant ton op\xE9ration parce que \u2026 Il faut\
-      \ \xEAtre \xE0 jeun le jour de l\u2019intervention. Cela implique \u2026 Le\
-      \ bloc op\xE9ratoire est une pi\xE8ce st\xE9rile. Pour respecter les consignes\
-      \ d\u2019hygi\xE8ne il faut que tu retires tes lentilles de contacts si tu en\
-      \ portes. De la m\xEAme mani\xE8re, tu ne dois pas porter de vernis \xE0 ongles\
-      \ et \xE9viter les bijoux. Enfin pour respecter les consignes d\u2019hygi\xE8\
-      ne, il faut que tu te douches \xE0 la b\xE9tadine le jour de ton op\xE9ration\
-      \ !"
   utter_slot_values:
   - text: "Enchant\xE9 de te rencontrer {name} ! Ton op\xE9ration sur la pathologie\
       \ \"{pathologie}\" est le {date}. A {age} ans, ca ne devrait pas \xEAtre une\
       \ grande \xE9preuve pour toi !"
-  utter_stresse:
-  - text: Relax, we are friends :)
   utter_thanks:
-  - text: Avec plaisir :)
-  - text: Pas de soucis !
-  - text: "Je suis l\xE0 pour \xE7a :)"
+  - text: Avec plaisir 🙂
+  - text: Pas de soucis ! 
+  - text: "Je suis l\xE0 pour \xE7a 🙂"
   utter_insultes:
   - image: https://www.chosesasavoir.com/wp-content/uploads/2016/11/doigt-dhonneur.jpg
-    text: T'es pas cool :(
+    text: T'es pas cool 😥
   utter_compliments:
-  - text: T'es pas le premier à me le dire ;)
+  - text: T'es pas le premier à me le dire 😉

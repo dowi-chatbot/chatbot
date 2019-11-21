@@ -64,15 +64,15 @@
 
 ## ask conseil 2
 * conseil_jour
-    - utter_conseils
+    - action_conseils
 
 ## ask_preparation
 * preparation
-    - utter_preparer
+    - action_preparation
 
 ## ask_stresse
 * stresse
-    - utter_stresse
+    - action_stresse
 
 
 ## thanks

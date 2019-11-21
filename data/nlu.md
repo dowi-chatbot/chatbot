@@ -78,6 +78,9 @@
 - J'aimerai commencer un un traitement
 - je veux démarrer un suivi
 - je veux commencer
+- je suis prêt 
+- je suis pret 
+- je suis pret à commencer
 
 ## intent:gavename
 - mon nom est [Olivier](name)
@@ -300,6 +303,9 @@
 - Merci
 - Trop cool, merci !
 - Vraiment super, merci beaucoup !
+- super
+- top 
+- génial 
 
 ## synonym:Henri
 - henri
@@ -338,6 +344,7 @@
 - tu fais chier 
 - t'es relou
 - t'es chiant
+- t'es con
 
 ## intent:compliments
 - c'est marrant

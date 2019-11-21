@@ -17,8 +17,8 @@
 <script>
   WebChat.default.init({
     selector: "#webchat",
-    initPayload: "crocodile",
-    interval: 1000, // 1000 ms between each message
+    initPayload: "je veux démarrer",
+    interval: getRandomIntInclusive(1000,1500), // 1000 ms between each message
     customData: {"userId": "123"}, // arbitrary custom data. Stay minimal as this will be added to the socket
     socketUrl: "http://localhost:5005",
     socketPath: "/socket.io/",
@@ -44,6 +44,11 @@
       storage: "local"
     },
   })
+
+   function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min +1)) + min;
 </script>
 </div>
 
