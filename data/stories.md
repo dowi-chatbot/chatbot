@@ -7,14 +7,18 @@
   - utter_iamabot
 
 
+
 ## New Story
 
 * firstConversation
     - utter_firstgreet
     - utter_firstConversation
 * deny
-    -utter_comebacklater
+    - utter_comebacklater
 
+## deny
+* deny
+    - utter_comebacklater
 
 ## interactive_story_1
 * firstConversation
@@ -23,6 +27,11 @@
 * deny
     - utter_comebacklater
 
+## form test
+* checkup
+    - initialization_form_test
+    - slot{"saignement": true}
+    
 ## premiere conversation OUI dowi
 * firstConversation
     - utter_firstgreet

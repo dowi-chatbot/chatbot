@@ -33,8 +33,11 @@ entities:
 - name
 - pathologie
 - type_intervention
+- saignement
+- alveolite
 forms:
 - initialization_form
+- initialization_form_test
 intents:
 - firstConversation
 - give_age
@@ -62,8 +65,15 @@ intents:
 - inter_local
 - inter_général
 - next_day
+- checkup
 
 slots:
+  alveolite:
+    auto_fill: false
+    type: bool
+  saignement:
+    auto_fill: false
+    type: bool
   timer: 
     auto_fill: false
     type: float
@@ -93,6 +103,20 @@ slots:
   requested_slot:
     type: unfeaturized
 templates:
+  utter_ask_saignement:
+  - buttons:
+    - payload: "Oui"
+      title: "Oui"
+    - payload: "Non"
+      title: "Non"
+    text: Présentes-tu des saignements ?
+  utter_ask_alveolite:
+  - buttons:
+    - payload: "Oui"
+      title: "Oui"
+    - payload: "Non"
+      title: "Non"
+    text: As-tu mal ?
   utter_ask_type_intervention:
   - buttons:
     - payload: local
@@ -169,3 +193,5 @@ templates:
     text: T'es pas cool 😥
   utter_compliments:
   - text: T'es pas le premier à me le dire 😉
+  utter_default:
+  - text: Je ne suis pas sur d'avoir bien compris ton message... Peux-tu me reformuler ?

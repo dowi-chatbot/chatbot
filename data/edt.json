@@ -1,0 +1,12 @@
+{
+    "check-up":[
+        {
+            "slots":["saignement"],
+            "time":1
+        },
+        {
+            "slots":["saignement", "alveolite"],
+            "time":2
+        }
+    ]
+}

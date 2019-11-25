@@ -54,6 +54,31 @@ class InitializationForm(FormAction):
 		dispatcher.utter_message("Top ! J'ai tout ce qu'il me faut.")
 		return[]
 
+class InitializationForm_test(FormAction):
+	def name(self) -> Text:
+		return "initialization_form_test"
+
+	@staticmethod
+	def required_slots(tracker: Tracker):
+		return ["saignement","alveolite"]
+
+	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
+		dispatcher.utter_message("Le check up a bien été effectué")
+		return[]
+	
+	def slot_mappings(self):
+		return {
+			"saignement": [
+				self.from_intent(intent="affirm", value =True),
+				self.from_intent(intent="deny", value=False)
+				],
+			"alveolite": [
+				self.from_intent(intent="affirm", value =True),
+				self.from_intent(intent="deny", value=False)
+			]
+			}
+
+
 class ActionPersoHello(Action):
 	def name(self) -> Text:
 		return "action_PersoHello"

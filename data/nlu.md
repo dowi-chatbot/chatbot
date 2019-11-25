@@ -230,6 +230,9 @@
 - au revoir
 - Je reviens vers toi demain
 
+## intent:checkup
+- check up
+
 ## intent:greet
 - hey
 - hello
@@ -260,22 +263,7 @@
 - [Ligaments croisés](pathologie)
 - [ligaments croisés](pathologie)
 
-## intent:mood_happy
-- parfait
-- très bien
-- super
-- incroyable
-- great
-- top
-- je me sens super bien
-- ça va super
-- je vais bien
-- Bien et toi ?
-- super et toi ?
-- super merci beaucoup
-- super, merci beaucoup
-- bien et toi ?
-- Super
+
 
 ## intent:mood_unhappy
 - triste
@@ -319,6 +307,14 @@
 - super
 - top 
 - génial 
+- top, tu es super !
+- parfait
+- très bien
+- super
+- incroyable
+- great
+- top
+- Super
 
 ## synonym:Henri
 - henri
