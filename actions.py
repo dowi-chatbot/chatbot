@@ -34,7 +34,7 @@ class ActionReminder(Action):
 		return [ReminderScheduled("action_test", datetime.now()+timedelta(seconds=20), kill_on_user_message=False)]
 
 
-class ActionReminder(Action):
+class ActionReminderTest(Action):
 	def name(self) -> Text:
 		return "action_test"
 
@@ -73,7 +73,7 @@ class ActionPersoHello(Action):
 		return[] 
 
 
-class ActionReminder(Action):
+class ActionReminderPre(Action):
 	def name(self) -> Text:
 		return "action_reminder_pre"
 
