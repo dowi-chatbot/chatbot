@@ -29,9 +29,12 @@
 
 ## form test
 * checkup
-    - initialization_form_test
+    - check_up_form
     - slot{"saignement": true}
-    
+
+## chatbotFirst
+    - action_reminder
+
 ## premiere conversation OUI dowi
 * firstConversation
     - utter_firstgreet
@@ -141,3 +144,4 @@
     - action_reminder_pre
     - reminder{"action": "action_J_1", "date_time": "2019-11-15T16:09:49.243304", "name": "f1a160e6-07b9-11ea-8d33-6003089d1d42", "kill_on_user_msg": false}
     - reminder{"action": "action_J_2", "date_time": "2019-11-15T16:09:59.243321", "name": "f1a1688e-07b9-11ea-8d33-6003089d1d42", "kill_on_user_msg": false}
+

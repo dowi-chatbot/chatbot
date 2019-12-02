@@ -14,19 +14,12 @@
 - oui
 - oui
 - oui
+- Oui, un peu
 
-## intent:next_day
-- jour suivant
-- je veux changer de jour
-- passer au jour suivant 
-
-## intent:inter_local
-- [local](type_intervention)
-- mon intervention est [local](type_intervention)
-
-## intent:inter_général
-- [général](type_intervention)
-- mon intervention est [général](type_intervention)
+## intent:blague
+- Une blague
+- Je veux une blague
+- Une blague de chuck norris
 
 ## intent:bot_challenge
 - es tu un robot?
@@ -39,6 +32,19 @@
 ## intent:cancer_prostate
 - [cancer de la prostate](pathologie)
 - [Cancer de la prostate](pathologie)
+
+## intent:checkup
+- check up
+- check up
+
+## intent:compliments
+- c'est marrant
+- t'es drole
+- très marrant
+- t'es beau
+- t'es fort
+- t'es trop fort
+- T'es puissant
 
 ## intent:conseil_jour
 - Conseil du jour
@@ -91,8 +97,8 @@
 - J'aimerai commencer un un traitement
 - je veux démarrer un suivi
 - je veux commencer
-- je suis prêt 
-- je suis pret 
+- je suis prêt
+- je suis pret
 - je suis pret à commencer
 
 ## intent:gavename
@@ -181,6 +187,7 @@
 - [23](age) ans
 - Mon age est [23](age) ans
 - [19](age) ans
+- [24](age)ans
 
 ## intent:give_date
 - mon opération est le [02/10/19](date)
@@ -230,9 +237,6 @@
 - au revoir
 - Je reviens vers toi demain
 
-## intent:checkup
-- check up
-
 ## intent:greet
 - hey
 - hello
@@ -259,11 +263,35 @@
 - Hey ca va ?
 - Guten tag
 
+## intent:insultes
+- ta gueule
+- connard
+- va te faire foutre
+- encule
+- t'es une merde
+- tu sers à rien
+- tu reponds à rien
+- fils de pute
+- abruti
+- sale bléreau
+- batard
+- salope
+- tu fais chier
+- t'es relou
+- t'es chiant
+- t'es con
+
+## intent:inter_général
+- [général](type_intervention)
+- mon intervention est [général](type_intervention)
+
+## intent:inter_local
+- [local](type_intervention)
+- mon intervention est [local](type_intervention)
+
 ## intent:ligaments_croises
 - [Ligaments croisés](pathologie)
 - [ligaments croisés](pathologie)
-
-
 
 ## intent:mood_unhappy
 - triste
@@ -276,6 +304,11 @@
 - pas top
 - extremement triste
 - si triste
+
+## intent:next_day
+- jour suivant
+- je veux changer de jour
+- passer au jour suivant
 
 ## intent:preparation
 - Se préparer au mieux
@@ -305,8 +338,8 @@
 - Trop cool, merci !
 - Vraiment super, merci beaucoup !
 - super
-- top 
-- génial 
+- top
+- génial
 - top, tu es super !
 - parfait
 - très bien
@@ -330,36 +363,3 @@
 
 ## synonym:theo
 - Theo
-
-## intent:blague
-- Une blague
-- Je veux une blague
-- Une blague de chuck norris
-
-
-## intent:insultes
-- ta gueule
-- connard
-- va te faire foutre
-- encule
-- t'es une merde
-- tu sers à rien
-- tu reponds à rien
-- fils de pute
-- abruti
-- sale bléreau
-- batard
-- salope
-- tu fais chier 
-- t'es relou
-- t'es chiant
-- t'es con
-
-## intent:compliments
-- c'est marrant
-- t'es drole
-- très marrant
-- t'es beau
-- t'es fort
-- t'es trop fort
-- T'es puissant

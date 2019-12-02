@@ -1,48 +1,49 @@
 actions:
+- action_J_1
+- action_J_2
 - action_PersoHello
+- action_blagues
+- action_change_day
+- action_conseils
 - action_get_name
+- action_preparation
 - action_reminder
 - action_reminder_pre
+- action_stresse
 - action_test
+- action_timer
+- utter_ask_type_intervention
 - utter_cheer_up
 - utter_comebacklater
-- action_conseils
+- utter_compliments
 - utter_did_that_help
 - utter_firstConversation
 - utter_firstgreet
 - utter_goodbye
 - utter_happy
 - utter_iamabot
+- utter_insultes
 - utter_options
 - utter_slot_values
 - utter_thanks
-- action_J_1
-- action_J_2
-- utter_insultes
-- action_blagues
-- utter_compliments
-- action_preparation
-- action_stresse
-- utter_ask_type_intervention
-- action_timer
-- action_change_day
-
 entities:
 - age
 - date
 - name
 - pathologie
-- type_intervention
 - saignement
+- type_intervention
 - alveolite
+- fil
 forms:
+- check_up_form
 - initialization_form
-- initialization_form_test
 intents:
+- affirm
+- checkup
 - firstConversation
 - give_age
 - dents_sagesse
-- affirm
 - gavename
 - give_date
 - stresse
@@ -63,26 +64,9 @@ intents:
 - blague
 - compliments
 - inter_local
-- inter_général
+- "inter_g\xE9n\xE9ral"
 - next_day
-- checkup
-
 slots:
-  alveolite:
-    auto_fill: false
-    type: bool
-  saignement:
-    auto_fill: false
-    type: bool
-  timer: 
-    auto_fill: false
-    type: float
-  type_intervention:
-    auto_fill: false
-    type: categorical
-    values: 
-    - local
-    - général 
   age:
     auto_fill: false
     type: unfeaturized
@@ -102,28 +86,27 @@ slots:
     - "proth\xE8se de hanche"
   requested_slot:
     type: unfeaturized
+  alveolite:
+    auto_fill: false
+    type: text
+  saignement:
+    auto_fill: false
+    type: text
+  fil:
+    auto_fill: false
+    type: text
+  timer:
+    auto_fill: false
+    max_value: 1.0
+    min_value: 0.0
+    type: float
+  type_intervention:
+    auto_fill: false
+    type: categorical
+    values:
+    - local
+    - "g\xE9n\xE9ral"
 templates:
-  utter_ask_saignement:
-  - buttons:
-    - payload: "Oui"
-      title: "Oui"
-    - payload: "Non"
-      title: "Non"
-    text: Présentes-tu des saignements ?
-  utter_ask_alveolite:
-  - buttons:
-    - payload: "Oui"
-      title: "Oui"
-    - payload: "Non"
-      title: "Non"
-    text: As-tu mal ?
-  utter_ask_type_intervention:
-  - buttons:
-    - payload: local
-      title: Local 
-    - payload: général
-      title: Général 
-    text: Quel est le type de ton intervention ?
   utter_ask_age:
   - text: Quel age as tu ?
   utter_ask_date:
@@ -143,11 +126,47 @@ templates:
     - payload: "Proth\xE8se de hanche"
       title: "Proth\xE8se de hanche"
     text: Quelle est ta pathologie ?
+  utter_ask_alveolite:
+  - buttons:
+    - payload: "Vive et continue"
+      title: "Vive et continue"
+    - payload: "Douleur de contact"
+      title: "Douleur de contact"
+    - payload: "Non"
+      title: "Non"
+    text: As tu des douleurs ?
+  utter_ask_fil:
+  - buttons: 
+    - payload: Oui
+      title: Oui
+    - payload: Non
+      title: Non
+    text: Tes fils sont-ils toujours en place ?
+  utter_ask_saignement:
+  - buttons:
+    - payload: Oui, un peu
+      title: Oui, un peu
+    - payload: Oui, abondement
+      title: Oui, abondement
+    - payload: Non
+      title: Non
+    text: "Pr\xE9sentes-tu des saignements ?"
+  utter_ask_type_intervention:
+  - buttons:
+    - payload: local
+      title: Local
+    - payload: "g\xE9n\xE9ral"
+      title: "G\xE9n\xE9ral"
+    text: Quel est le type de ton intervention ?
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: "Voila quelque chose que j'aimerai te partager:"
   utter_comebacklater:
-  - text: Pas de soucis, reviens vers moi quand tu en auras besoin 🙂
+  - text: "Pas de soucis, reviens vers moi quand tu en auras besoin \U0001F642"
+  utter_compliments:
+  - text: "T'es pas le premier \xE0 me le dire \U0001F609"
+  utter_default:
+  - text: Je ne suis pas sur d'avoir bien compris ton message... Peux-tu me reformuler ?
   utter_did_that_help:
   - text: "Cela t'a aid\xE9?"
   utter_firstConversation:
@@ -167,6 +186,9 @@ templates:
   - text: Top, je suis content pour toi !
   utter_iamabot:
   - text: "Je suis un robot, cr\xE9\xE9 par Dowi."
+  utter_insultes:
+  - image: https://www.chosesasavoir.com/wp-content/uploads/2016/11/doigt-dhonneur.jpg
+    text: "T'es pas cool \U0001F625"
   utter_options:
   - buttons:
     - payload: Conseil du jour
@@ -182,16 +204,10 @@ templates:
     text: Comment puis-je t'aider aujourd'hui ?
   utter_slot_values:
   - text: "Enchant\xE9 de te rencontrer {name} ! Ton op\xE9ration sur la pathologie\
-      \ \"{pathologie}\" en {type_intervention} est le {date}. On est donc à J{timer} de l'opération. A {age} ans, ca ne devrait pas \xEAtre une\
-      \ grande \xE9preuve pour toi !"
+      \ \"{pathologie}\" en {type_intervention} est le {date}. On est donc \xE0 J{timer}\
+      \ de l'op\xE9ration. A {age} ans, ca ne devrait pas \xEAtre une grande \xE9\
+      preuve pour toi !"
   utter_thanks:
-  - text: Avec plaisir 🙂
-  - text: Pas de soucis ! 
-  - text: "Je suis l\xE0 pour \xE7a 🙂"
-  utter_insultes:
-  - image: https://www.chosesasavoir.com/wp-content/uploads/2016/11/doigt-dhonneur.jpg
-    text: T'es pas cool 😥
-  utter_compliments:
-  - text: T'es pas le premier à me le dire 😉
-  utter_default:
-  - text: Je ne suis pas sur d'avoir bien compris ton message... Peux-tu me reformuler ?
+  - text: "Avec plaisir \U0001F642"
+  - text: Pas de soucis !
+  - text: "Je suis l\xE0 pour \xE7a \U0001F642"

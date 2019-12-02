@@ -8,7 +8,7 @@
 # This is a simple example for a custom action which utters "Hello World!"
 
 from typing import Any, Text, Dict, List, Union, Optional
-#  
+  
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet, ReminderScheduled 
 from rasa_sdk.executor import ActionExecutor, CollectingDispatcher
@@ -17,6 +17,9 @@ from datetime import datetime, timedelta
 import random
 import requests
 import json
+
+import smtplib
+from email.mime.text import MIMEText
 
 class ActionGetName(Action):
 	def name(self) -> Text:
@@ -32,7 +35,6 @@ class ActionReminder(Action):
 
 	def run(self, dispatcher, tracker, domain):
 		return [ReminderScheduled("action_test", datetime.now()+timedelta(seconds=20), kill_on_user_message=False)]
-
 
 class ActionReminderTest(Action):
 	def name(self) -> Text:
@@ -52,31 +54,44 @@ class InitializationForm(FormAction):
 
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
 		dispatcher.utter_message("Top ! J'ai tout ce qu'il me faut.")
+
 		return[]
 
-class InitializationForm_test(FormAction):
+class CheckUpForm(FormAction):
 	def name(self) -> Text:
-		return "initialization_form_test"
+		return "check_up_form"
 
 	@staticmethod
 	def required_slots(tracker: Tracker):
-		return ["saignement","alveolite"]
+		return ["saignement", "alveolite", "fil"]
 
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
-		dispatcher.utter_message("Le check up a bien été effectué")
+		mail = 'o.dupain@gmail.com'
+		message = MIMEText('Saignement: '+ tracker.get_slot("saignement")+'\nAlvéolite : '+tracker.get_slot("alveolite")+'\nFil: '+tracker.get_slot("fil"))
+		message['Subject'] = 'Checkup Dowi de '+tracker.get_slot("name")+'.'
+		message['From'] = 'dowidowi930@gmail.com'
+		message['To'] = mail
+		server = smtplib.SMTP('smtp.gmail.com:587')
+		server.starttls()
+		server.login('dowidowi930@gmail.com','&dowidowi92!')
+		server.send_message(message)
+		server.quit()
+		dispatcher.utter_message("Check up terminé !")
 		return[]
 	
 	def slot_mappings(self):
 		return {
 			"saignement": [
-				self.from_intent(intent="affirm", value =True),
-				self.from_intent(intent="deny", value=False)
+				self.from_text()
 				],
 			"alveolite": [
-				self.from_intent(intent="affirm", value =True),
-				self.from_intent(intent="deny", value=False)
-			]
+				self.from_text()
+				],
+			"fil": [
+				self.from_text()
+				]
 			}
+	
 
 
 class ActionPersoHello(Action):
@@ -96,7 +111,6 @@ class ActionPersoHello(Action):
 		dispatcher.utter_message(monR)
 		
 		return[] 
-
 
 class ActionReminderPre(Action):
 	def name(self) -> Text:
