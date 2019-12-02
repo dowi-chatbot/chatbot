@@ -35,10 +35,12 @@ entities:
 - type_intervention
 - alveolite
 - fil
+- mail
 forms:
 - check_up_form
 - initialization_form
 intents:
+- pas_de_mail
 - affirm
 - checkup
 - firstConversation
@@ -87,6 +89,9 @@ slots:
   requested_slot:
     type: unfeaturized
   alveolite:
+    auto_fill: false
+    type: text
+  mail:
     auto_fill: false
     type: text
   saignement:
@@ -142,6 +147,8 @@ templates:
     - payload: Non
       title: Non
     text: Tes fils sont-ils toujours en place ?
+  utter_ask_mail:
+  - text: A quel mail souhaites-tu que nous envoyons l'avancée de ton rétablissement ? Si tu n'as pas de docteur atitré, écris \"je n'ai pas de mail\"
   utter_ask_saignement:
   - buttons:
     - payload: Oui, un peu

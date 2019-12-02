@@ -50,12 +50,17 @@ class InitializationForm(FormAction):
 
 	@staticmethod
 	def required_slots(tracker: Tracker):
-		return ["name", "age", "pathologie", "type_intervention", "date"]
+		return ["name", "age", "pathologie", "type_intervention", "date", "mail"]
 
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
 		dispatcher.utter_message("Top ! J'ai tout ce qu'il me faut.")
-
 		return[]
+
+	def slot_mappings(self):
+		return {
+			"mail": [
+				self.from_text()
+				]}
 
 class CheckUpForm(FormAction):
 	def name(self) -> Text:
@@ -66,17 +71,23 @@ class CheckUpForm(FormAction):
 		return ["saignement", "alveolite", "fil"]
 
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
-		mail = 'o.dupain@gmail.com'
+		mail = tracker.get_slot("mail")
+		
 		message = MIMEText('Saignement: '+ tracker.get_slot("saignement")+'\nAlvéolite : '+tracker.get_slot("alveolite")+'\nFil: '+tracker.get_slot("fil"))
-		message['Subject'] = 'Checkup Dowi de '+tracker.get_slot("name")+'.'
+		message['Subject'] = 'Checkup Dowi de '+tracker.get_slot("name")
 		message['From'] = 'dowidowi930@gmail.com'
 		message['To'] = mail
-		server = smtplib.SMTP('smtp.gmail.com:587')
-		server.starttls()
-		server.login('dowidowi930@gmail.com','&dowidowi92!')
-		server.send_message(message)
-		server.quit()
-		dispatcher.utter_message("Check up terminé !")
+		
+		try:
+			server = smtplib.SMTP('smtp.gmail.com:587')
+			server.starttls()
+			server.login('dowidowi930@gmail.com','&dowidowi92!')
+			server.send_message(message)
+			server.quit()
+			dispatcher.utter_message("Check up terminé !")
+		
+		except: 
+			dispatcher.utter_message("Checkup terminé ! L'adresse du médecin n'étant pas renseigné ou non valide, nous n'avons pas envoyé de rapport mail.")
 		return[]
 	
 	def slot_mappings(self):
@@ -157,8 +168,6 @@ class ActionConseils(Action):
 		return "action_conseils"
 
 	def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain):
-		
-		
 		db = open('data/db.json')
 		db_str = db.read()
 		monJ = json.loads(db_str)
@@ -177,8 +186,6 @@ class ActionPreparation(Action):
 		return "action_preparation"
 
 	def run(self, dispatcher:CollectingDispatcher, tracker:Tracker, domain):
-		
-		
 		db = open('data/db.json')
 		db_str = db.read()
 		monJ = json.loads(db_str)

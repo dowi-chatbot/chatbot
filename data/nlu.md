@@ -1,3 +1,9 @@
+## intent:pas_de_mail
+- je n'ai pas de mail
+- pas de mail
+- o.dupain@gmail.com
+- henri.m.96@gmail.com
+
 ## intent:affirm
 - yes
 - oui
