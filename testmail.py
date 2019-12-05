@@ -4,7 +4,7 @@ from email.mime.text import MIMEText
 
 
 def envoieMail():
-    mail = 'je veux pas la donner'
+    mail = 'o.dupain@gmail.com'
 
     message = MIMEText('Ceci est un test !')
     message['Subject'] = 'Test Dowi'

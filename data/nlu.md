@@ -1,9 +1,3 @@
-## intent:pas_de_mail
-- je n'ai pas de mail
-- pas de mail
-- o.dupain@gmail.com
-- henri.m.96@gmail.com
-
 ## intent:affirm
 - yes
 - oui
@@ -21,6 +15,13 @@
 - oui
 - oui
 - Oui, un peu
+- oui
+
+## intent:ask_movie
+- donne moi une recommendation de fil
+- quels films sont à l'affiche ?
+- que puis-je regarder ?
+- Découvrir un film
 
 ## intent:blague
 - Une blague
@@ -38,6 +39,12 @@
 ## intent:cancer_prostate
 - [cancer de la prostate](pathologie)
 - [Cancer de la prostate](pathologie)
+
+## intent:change_mail
+- je veux changer l'adresse mail de mon docteur
+- est-il possible de changer l'adresse mail de mon docteur ?
+- Changer mail du docteur
+- Changer mail du docteur
 
 ## intent:checkup
 - check up
@@ -68,6 +75,7 @@
 - [Dents de sagesse](pathologie)
 - [Dents de sagesse](pathologie)
 - [dents de sagesse](pathologie)
+- [Dents de sagesse](pathologie)
 
 ## intent:deny
 - non
@@ -106,6 +114,7 @@
 - je suis prêt
 - je suis pret
 - je suis pret à commencer
+- je veux démarrer
 
 ## intent:gavename
 - mon nom est [Olivier](name)
@@ -158,6 +167,7 @@
 - [henri](name)
 - [Morgan](name)
 - [Léa](name)
+- [Olivier](name:olivier)
 
 ## intent:give_age
 - j'ai [18](age) ans
@@ -194,6 +204,7 @@
 - Mon age est [23](age) ans
 - [19](age) ans
 - [24](age)ans
+- [23](age) ans
 
 ## intent:give_date
 - mon opération est le [02/10/19](date)
@@ -227,6 +238,7 @@
 - je suis opéré le [12/10/20](date)
 - [12/12/19](date)
 - Mon opération est le [24/12/19](date)
+- [12/12/19](date)
 - [12/12/19](date)
 
 ## intent:goodbye
@@ -268,6 +280,7 @@
 - Hola
 - Hey ca va ?
 - Guten tag
+- hello
 
 ## intent:insultes
 - ta gueule
@@ -294,10 +307,23 @@
 ## intent:inter_local
 - [local](type_intervention)
 - mon intervention est [local](type_intervention)
+- [Local](type_intervention)
 
 ## intent:ligaments_croises
 - [Ligaments croisés](pathologie)
 - [ligaments croisés](pathologie)
+
+## intent:mail
+- [o.dupain@gmail.com](mail)
+- [henri.m.96@orange.fr](mail)
+- [agnes.lethierry@free.com](mail)
+- [basile_poutre@icloud.com](mail)
+- [sylvielasso@msn.com](mail)
+- [morganlebas@devinci.fr](mail)
+- [romano.lea@polytechnique.com](mail)
+- [une_adresse_mail@exemple.com](mail)
+- [henri.monta@orange.fr](mail)
+- [olivier@monmail.com](mail)
 
 ## intent:mood_unhappy
 - triste
@@ -315,6 +341,10 @@
 - jour suivant
 - je veux changer de jour
 - passer au jour suivant
+
+## intent:pas_de_mail
+- je n'ai pas de mail
+- pas de mail
 
 ## intent:preparation
 - Se préparer au mieux

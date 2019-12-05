@@ -21,6 +21,8 @@ import json
 import smtplib
 from email.mime.text import MIMEText
 
+import http.client
+
 class ActionGetName(Action):
 	def name(self) -> Text:
 		return "action_get_name"
@@ -43,6 +45,38 @@ class ActionReminderTest(Action):
 	def run(self, dispatcher,tracker,domain):
 		dispatcher.utter_message("Action test programmée")
 		return [SlotSet("name", "Gérard")]
+
+class ActionFindMovie(Action):
+	def name(self) -> Text:
+		return "action_find_movie"
+
+	def run(self, dispatcher:CollectingDispatcher, tracker: Tracker, domain):
+		conn = http.client.HTTPSConnection("api.themoviedb.org")
+
+		date_gte = datetime.now() - timedelta(days=7)
+		date_lte_string = datetime.now().strftime("%Y-%m-%d")
+		date_gte_string = date_gte.strftime("%Y-%m-%d")
+
+		url = "/3/discover/movie?primary_release_date.lte=" + date_lte_string + "&primary_release_date.gte=" + date_gte_string + "&page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=fr-FR&api_key=cf074dea94828cf86b340bef21e15941"
+
+		payload = "{}"
+
+		conn.request("GET", url, payload)
+
+		res = conn.getresponse()
+		data = res.read()
+		data = json.loads(data)
+		rand = random.randint(0,len(data['results']))
+		chosen = data['results'][rand]
+
+		#image = 'https://image.tmdb.org/t/p/w200/'+chosen['poster_path']
+		text = 'Je te conseille de regarder '+chosen['title']+'. Ce film a été noté '+str(chosen['vote_average'])+' et il est actuellement au cinéma :) !'
+		
+		#element = {'text':text,'class':'image','url':image}
+		#dispatcher.utter_custom_message(*element)
+		dispatcher.utter_message(text)
+
+		return []
 
 class InitializationForm(FormAction):
 	def name(self) -> Text:
@@ -71,6 +105,7 @@ class CheckUpForm(FormAction):
 		return ["saignement", "alveolite", "fil"]
 
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
+		dispatcher.utter_message('ok')
 		mail = tracker.get_slot("mail")
 		
 		message = MIMEText('Saignement: '+ tracker.get_slot("saignement")+'\nAlvéolite : '+tracker.get_slot("alveolite")+'\nFil: '+tracker.get_slot("fil"))
@@ -230,22 +265,3 @@ class ActionChangeDay(Action):
 		jour = tracker.get_slot("timer") + 1
 		dispatcher.utter_message("Tu as changé de jour, nous sommes maintenant le jour "+str(jour)+" ! :)")
 		return[SlotSet("timer",jour)]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

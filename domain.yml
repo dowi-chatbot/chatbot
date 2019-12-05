@@ -4,7 +4,9 @@ actions:
 - action_PersoHello
 - action_blagues
 - action_change_day
+- action_change_mail
 - action_conseils
+- action_find_movie
 - action_get_name
 - action_preparation
 - action_reminder
@@ -13,6 +15,7 @@ actions:
 - action_test
 - action_timer
 - utter_ask_type_intervention
+- utter_change_mail
 - utter_cheer_up
 - utter_comebacklater
 - utter_compliments
@@ -28,28 +31,32 @@ actions:
 - utter_thanks
 entities:
 - age
+- alveolite
 - date
+- fil
+- mail
 - name
 - pathologie
 - saignement
 - type_intervention
-- alveolite
-- fil
-- mail
 forms:
 - check_up_form
 - initialization_form
 intents:
-- pas_de_mail
-- affirm
-- checkup
-- firstConversation
-- give_age
 - dents_sagesse
+- affirm
 - gavename
+- inter_local
+- give_age
 - give_date
-- stresse
+- change_mail
+- mail
+- firstConversation
 - greet
+- ask_movie
+- pas_de_mail
+- checkup
+- stresse
 - conseil_jour
 - preparation
 - deny
@@ -65,16 +72,23 @@ intents:
 - insultes
 - blague
 - compliments
-- inter_local
 - "inter_g\xE9n\xE9ral"
 - next_day
 slots:
   age:
     auto_fill: false
     type: unfeaturized
+  alveolite:
+    auto_fill: false
+    type: text
   date:
     auto_fill: false
     type: unfeaturized
+  fil:
+    auto_fill: false
+    type: text
+  mail:
+    type: text
   name:
     auto_fill: false
     type: unfeaturized
@@ -88,16 +102,7 @@ slots:
     - "proth\xE8se de hanche"
   requested_slot:
     type: unfeaturized
-  alveolite:
-    auto_fill: false
-    type: text
-  mail:
-    auto_fill: false
-    type: text
   saignement:
-    auto_fill: false
-    type: text
-  fil:
     auto_fill: false
     type: text
   timer:
@@ -114,8 +119,27 @@ slots:
 templates:
   utter_ask_age:
   - text: Quel age as tu ?
+  utter_ask_alveolite:
+  - buttons:
+    - payload: Vive et continue
+      title: Vive et continue
+    - payload: Douleur de contact
+      title: Douleur de contact
+    - payload: Non
+      title: Non
+    text: As tu des douleurs ?
   utter_ask_date:
   - text: "Quelle est la date de ton op\xE9ration (format JJ/MM/AA) ?"
+  utter_ask_fil:
+  - buttons:
+    - payload: Oui
+      title: Oui
+    - payload: Non
+      title: Non
+    text: Tes fils sont-ils toujours en place ?
+  utter_ask_mail:
+  - text: "A quel mail souhaites-tu que nous envoyons l'avanc\xE9e de ton r\xE9tablissement\
+      \ ? Si tu n'as pas de docteur atitr\xE9, \xE9cris \\\"je n'ai pas de mail\\\""
   utter_ask_name:
   - text: Quel est ton nom ?
   utter_ask_pathologie:
@@ -131,24 +155,6 @@ templates:
     - payload: "Proth\xE8se de hanche"
       title: "Proth\xE8se de hanche"
     text: Quelle est ta pathologie ?
-  utter_ask_alveolite:
-  - buttons:
-    - payload: "Vive et continue"
-      title: "Vive et continue"
-    - payload: "Douleur de contact"
-      title: "Douleur de contact"
-    - payload: "Non"
-      title: "Non"
-    text: As tu des douleurs ?
-  utter_ask_fil:
-  - buttons: 
-    - payload: Oui
-      title: Oui
-    - payload: Non
-      title: Non
-    text: Tes fils sont-ils toujours en place ?
-  utter_ask_mail:
-  - text: A quel mail souhaites-tu que nous envoyons l'avancée de ton rétablissement ? Si tu n'as pas de docteur atitré, écris \"je n'ai pas de mail\"
   utter_ask_saignement:
   - buttons:
     - payload: Oui, un peu
@@ -165,6 +171,9 @@ templates:
     - payload: "g\xE9n\xE9ral"
       title: "G\xE9n\xE9ral"
     text: Quel est le type de ton intervention ?
+  utter_change_mail:
+  - text: "Indique uniquement dans le prochain message le mail que tu souhaites mettre\
+      \ \xE0 jour :)"
   utter_cheer_up:
   - image: https://i.imgur.com/nGF1K8f.jpg
     text: "Voila quelque chose que j'aimerai te partager:"
@@ -173,7 +182,8 @@ templates:
   utter_compliments:
   - text: "T'es pas le premier \xE0 me le dire \U0001F609"
   utter_default:
-  - text: Je ne suis pas sur d'avoir bien compris ton message... Peux-tu me reformuler ?
+  - text: Je ne suis pas sur d'avoir bien compris ton message... Peux-tu me reformuler
+      ?
   utter_did_that_help:
   - text: "Cela t'a aid\xE9?"
   utter_firstConversation:
@@ -204,8 +214,10 @@ templates:
       title: "se pr\xE9parer au mieux"
     - payload: "Je suis stress\xE9"
       title: "Je suis stress\xE9"
-    - payload: Une blague de chuck norris
-      title: Une blague de chuck norris
+    - payload: "D\xE9couvrir un film"
+      title: "D\xE9couvrir un film"
+    - payload: Changer mail du docteur
+      title: Changer mail du docteur
     - payload: Jour suivant
       title: jour suivant
     text: Comment puis-je t'aider aujourd'hui ?

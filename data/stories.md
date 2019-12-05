@@ -93,10 +93,19 @@
 * preparation
     - action_preparation
 
+## ask_film
+* ask_movie
+    - action_find_movie
+
 ## ask_stresse
 * stresse
     - action_stresse
 
+## change_mail
+* change_mail
+    - utter_change_mail
+* mail
+    - slot{"mail": "o.dupain@gmail.com"}
 
 ## thanks
 * thanks
@@ -145,3 +154,52 @@
     - reminder{"action": "action_J_1", "date_time": "2019-11-15T16:09:49.243304", "name": "f1a160e6-07b9-11ea-8d33-6003089d1d42", "kill_on_user_msg": false}
     - reminder{"action": "action_J_2", "date_time": "2019-11-15T16:09:59.243321", "name": "f1a1688e-07b9-11ea-8d33-6003089d1d42", "kill_on_user_msg": false}
 
+
+
+
+## interactive_story_1
+* firstConversation
+    - utter_firstgreet
+    - utter_firstConversation
+* affirm
+    - initialization_form
+    - form{"name": "initialization_form"}
+    - slot{"requested_slot": "name"}
+* form: gavename{"name": "olivier"}
+    - form: initialization_form
+    - slot{"name": "olivier"}
+    - slot{"requested_slot": "age"}
+* form: give_age{"age": "23"}
+    - form: initialization_form
+    - slot{"age": "23"}
+    - slot{"requested_slot": "pathologie"}
+* form: dents_sagesse{"pathologie": "Dents de sagesse"}
+    - slot{"pathologie": "Dents de sagesse"}
+    - form: initialization_form
+    - slot{"pathologie": "Dents de sagesse"}
+    - slot{"requested_slot": "type_intervention"}
+* form: inter_local{"type_intervention": "Local"}
+    - form: initialization_form
+    - slot{"type_intervention": "Local"}
+    - slot{"requested_slot": "date"}
+* form: give_date{"date": "12/12/19"}
+    - form: initialization_form
+    - slot{"date": "12/12/19"}
+    - slot{"requested_slot": "mail"}
+* form: mail{"mail": "henri.monta@orange.fr"}
+    - slot{"mail": "henri.monta@orange.fr"}
+    - form: initialization_form
+    - slot{"mail": "henri.monta@orange.fr"}
+    - form{"name": null}
+    - slot{"requested_slot": null}
+    - utter_slot_values
+    - action_reminder_pre
+    - reminder{"action": "action_J_1", "date_time": "2019-12-03T15:09:23.242220", "name": "75d733ac-15d6-11ea-80fb-3c15c2b78e46", "kill_on_user_msg": false}
+    - reminder{"action": "action_J_2", "date_time": "2019-12-03T15:09:43.242272", "name": "75d73d98-15d6-11ea-80fb-3c15c2b78e46", "kill_on_user_msg": false}
+* greet
+    - action_PersoHello
+    - utter_options
+* change_mail
+    - utter_change_mail
+* mail{"mail": "olivier@monmail.com"}
+    - slot{"mail": "olivier@monmail.com"}
