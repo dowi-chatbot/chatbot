@@ -66,9 +66,8 @@
     - slot{"date": "12/10/20"}
     - form{"name": null}
     - slot{"requested_slot": null}
-    - action_timer
     - utter_slot_values
-    - action_reminder_pre
+
 
 ## change day
 * next_day
@@ -106,6 +105,7 @@
     - utter_change_mail
 * mail
     - slot{"mail": "o.dupain@gmail.com"}
+    - utter_mail_updated
 
 ## thanks
 * thanks
@@ -150,9 +150,7 @@
     - form{"name": null}
     - slot{"requested_slot": null}
     - utter_slot_values
-    - action_reminder_pre
-    - reminder{"action": "action_J_1", "date_time": "2019-11-15T16:09:49.243304", "name": "f1a160e6-07b9-11ea-8d33-6003089d1d42", "kill_on_user_msg": false}
-    - reminder{"action": "action_J_2", "date_time": "2019-11-15T16:09:59.243321", "name": "f1a1688e-07b9-11ea-8d33-6003089d1d42", "kill_on_user_msg": false}
+
 
 
 
@@ -193,9 +191,6 @@
     - form{"name": null}
     - slot{"requested_slot": null}
     - utter_slot_values
-    - action_reminder_pre
-    - reminder{"action": "action_J_1", "date_time": "2019-12-03T15:09:23.242220", "name": "75d733ac-15d6-11ea-80fb-3c15c2b78e46", "kill_on_user_msg": false}
-    - reminder{"action": "action_J_2", "date_time": "2019-12-03T15:09:43.242272", "name": "75d73d98-15d6-11ea-80fb-3c15c2b78e46", "kill_on_user_msg": false}
 * greet
     - action_PersoHello
     - utter_options
@@ -203,3 +198,4 @@
     - utter_change_mail
 * mail{"mail": "olivier@monmail.com"}
     - slot{"mail": "olivier@monmail.com"}
+    - utter_mail_updated

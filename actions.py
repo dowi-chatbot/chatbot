@@ -38,13 +38,6 @@ class ActionReminder(Action):
 	def run(self, dispatcher, tracker, domain):
 		return [ReminderScheduled("action_test", datetime.now()+timedelta(seconds=20), kill_on_user_message=False)]
 
-class ActionReminderTest(Action):
-	def name(self) -> Text:
-		return "action_test"
-
-	def run(self, dispatcher,tracker,domain):
-		dispatcher.utter_message("Action test programmée")
-		return [SlotSet("name", "Gérard")]
 
 class ActionFindMovie(Action):
 	def name(self) -> Text:
@@ -53,7 +46,7 @@ class ActionFindMovie(Action):
 	def run(self, dispatcher:CollectingDispatcher, tracker: Tracker, domain):
 		conn = http.client.HTTPSConnection("api.themoviedb.org")
 
-		date_gte = datetime.now() - timedelta(days=7)
+		date_gte = datetime.now() - timedelta(days=21)
 		date_lte_string = datetime.now().strftime("%Y-%m-%d")
 		date_gte_string = date_gte.strftime("%Y-%m-%d")
 
@@ -61,21 +54,23 @@ class ActionFindMovie(Action):
 
 		payload = "{}"
 
-		conn.request("GET", url, payload)
-
-		res = conn.getresponse()
-		data = res.read()
-		data = json.loads(data)
-		rand = random.randint(0,len(data['results']))
-		chosen = data['results'][rand]
-
-		#image = 'https://image.tmdb.org/t/p/w200/'+chosen['poster_path']
-		text = 'Je te conseille de regarder '+chosen['title']+'. Ce film a été noté '+str(chosen['vote_average'])+' et il est actuellement au cinéma :) !'
-		
-		#element = {'text':text,'class':'image','url':image}
-		#dispatcher.utter_custom_message(*element)
-		dispatcher.utter_message(text)
-
+		try:
+			conn.request("GET", url, payload)
+			res = conn.getresponse()
+			data = res.read()
+			data = json.loads(data)
+			chosen = [_ for _ in data['results'] if _['vote_average']>4]
+			rand = random.randint(0,len(chosen))
+			chosen = chosen[rand]
+			text = 'Je te conseille de regarder '+chosen['title']+'. Ce film a été noté '+str(chosen['vote_average'])+' et il est actuellement au cinéma :) !'
+			dispatcher.utter_message(text)
+		except: 
+			dispatcher.utter_message("Désolé, j'ai eu un problème internet, vérifie ta connexion et demande moi de nouveau 😊")
+		try:
+			image = 'https://image.tmdb.org/t/p/w200/'+chosen['backdrop_path']
+			dispatcher.utter_image_url(image)
+		except:
+			pass
 		return []
 
 class InitializationForm(FormAction):
@@ -87,8 +82,9 @@ class InitializationForm(FormAction):
 		return ["name", "age", "pathologie", "type_intervention", "date", "mail"]
 
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
+		nbr_j_avant_ope = datetime.strptime(tracker.get_slot("date"),'%d/%m/%y') - datetime(datetime.now().year, datetime.now().month, datetime.now().day)
 		dispatcher.utter_message("Top ! J'ai tout ce qu'il me faut.")
-		return[]
+		return[SlotSet("timer",-nbr_j_avant_ope.days)]
 
 	def slot_mappings(self):
 		return {
@@ -107,12 +103,32 @@ class CheckUpForm(FormAction):
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
 		dispatcher.utter_message('ok')
 		mail = tracker.get_slot("mail")
-		
-		message = MIMEText('Saignement: '+ tracker.get_slot("saignement")+'\nAlvéolite : '+tracker.get_slot("alveolite")+'\nFil: '+tracker.get_slot("fil"))
-		message['Subject'] = 'Checkup Dowi de '+tracker.get_slot("name")
+		pict = "https://media.licdn.com/dms/image/C4D0BAQFrT0693_pBGg/company-logo_400_400/0?e=1583366400&v=beta&t=XK0XWV_Y4wKwulLx27XFckq-sf2lSICjHn2GRXdoe70&fbclid=IwAR1WDvTatYNNXHD0mcKRxuysuuzQ2PH96KZuT2lZEBt53Ufx6ILzvNMR5co"
+		html = """
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  		<title>html title</title>
+ 		<div class="enca">
+ 		<h1 align="center"> Rapport de """+tracker.get_slot("name")+""" du """+datetime.now().strftime("%d/%m/%Y")+"""</h1>
+
+		<table align= "center" border="1">
+		<tr><th>Parametres</th><th>Reponses</th></tr>
+		<tr><th>Saignements</th><th>"""+tracker.get_slot("saignement")+"""</th></tr>
+		<tr><th>Alveolite</th><th>"""+tracker.get_slot("alveolite")+"""</th></tr>
+		<tr><th>Alveolite</th><th>"""+tracker.get_slot("fil")+"""</th></tr>
+		</table>
+		<br>
+		<div align="center">
+		<img src="https://media.licdn.com/dms/image/C4D0BAQFrT0693_pBGg/company-logo_400_400/0?e=1583366400&v=beta&t=XK0XWV_Y4wKwulLx27XFckq-sf2lSICjHn2GRXdoe70&fbclid=IwAR1WDvTatYNNXHD0mcKRxuysuuzQ2PH96KZuT2lZEBt53Ufx6ILzvNMR5co"  width="150" height="150" > 
+		</div>
+		<br>
+		<p align="center">Vous pouvez contacter le patient sur son numéro personnel.</p>
+		</div>
+		"""
+		message = MIMEText(html,'html')
+		message['Subject'] = 'Checkup Dowi '
 		message['From'] = 'dowidowi930@gmail.com'
 		message['To'] = mail
-		
+
 		try:
 			server = smtplib.SMTP('smtp.gmail.com:587')
 			server.starttls()
@@ -123,7 +139,9 @@ class CheckUpForm(FormAction):
 		
 		except: 
 			dispatcher.utter_message("Checkup terminé ! L'adresse du médecin n'étant pas renseigné ou non valide, nous n'avons pas envoyé de rapport mail.")
-		return[]
+		
+		
+		return[SlotSet("saignement", None),SlotSet("alveolite", None), SlotSet("fil", None)]
 	
 	def slot_mappings(self):
 		return {
@@ -249,13 +267,6 @@ class ActionStresse(Action):
 		dispatcher.utter_message(monUtt)
 		return[] 
 
-class ActionDefineTimer(Action):
-	def name(self) -> Text:
-		return "action_timer"
-
-	def run(self, dispatcher:CollectingDispatcher,tracker:Tracker,domain):
-		nbr_j_avant_ope = datetime.strptime(tracker.get_slot("date"),'%d/%m/%y') - datetime(datetime.now().year, datetime.now().month, datetime.now().day)
-		return[SlotSet("timer",-nbr_j_avant_ope.days)]
 
 class ActionChangeDay(Action):
 	def name(self) -> Text:
@@ -264,4 +275,8 @@ class ActionChangeDay(Action):
 	def run(self, dispatcher:CollectingDispatcher,tracker:Tracker,domain):
 		jour = tracker.get_slot("timer") + 1
 		dispatcher.utter_message("Tu as changé de jour, nous sommes maintenant le jour "+str(jour)+" ! :)")
+
 		return[SlotSet("timer",jour)]
+
+	def afaire(self):
+		return []

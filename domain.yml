@@ -13,7 +13,6 @@ actions:
 - action_reminder_pre
 - action_stresse
 - action_test
-- action_timer
 - utter_ask_type_intervention
 - utter_change_mail
 - utter_cheer_up
@@ -29,6 +28,7 @@ actions:
 - utter_options
 - utter_slot_values
 - utter_thanks
+- utter_mail_updated
 entities:
 - age
 - alveolite
@@ -230,3 +230,5 @@ templates:
   - text: "Avec plaisir \U0001F642"
   - text: Pas de soucis !
   - text: "Je suis l\xE0 pour \xE7a \U0001F642"
+  utter_mail_updated:
+  - text: C'est fait ! Le mail enregistré est maintenant {mail} :)

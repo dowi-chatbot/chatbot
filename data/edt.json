@@ -1,12 +1,12 @@
 {
-    "check-up":[
+    "prototype":[
         {
-            "slots":["saignement"],
-            "time":1
+            "type":["Preparation"],
+            "time":-3
         },
         {
-            "slots":["saignement", "alveolite"],
-            "time":2
+            "type":["Preparation", "Conseils"],
+            "time":-1
         }
     ]
 }
