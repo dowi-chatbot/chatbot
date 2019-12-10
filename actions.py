@@ -107,14 +107,14 @@ class CheckUpForm(FormAction):
 		html = """
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   		<title>html title</title>
- 		<div class="enca">
- 		<h1 align="center"> Rapport de """+tracker.get_slot("name")+""" du """+datetime.now().strftime("%d/%m/%Y")+"""</h1>
+ 		<div>
+ 		<h1 align="center"> Rapport de """+str(tracker.get_slot("name"))+""" du """+datetime.now().strftime("%d/%m/%Y")+"""</h1>
 
 		<table align= "center" border="1">
 		<tr><th>Parametres</th><th>Reponses</th></tr>
-		<tr><th>Saignements</th><th>"""+tracker.get_slot("saignement")+"""</th></tr>
-		<tr><th>Alveolite</th><th>"""+tracker.get_slot("alveolite")+"""</th></tr>
-		<tr><th>Alveolite</th><th>"""+tracker.get_slot("fil")+"""</th></tr>
+		<tr><th>Saignements</th><th>"""+str(tracker.get_slot("saignement"))+"""</th></tr>
+		<tr><th>Alveolite</th><th>"""+str(tracker.get_slot("alveolite"))+"""</th></tr>
+		<tr><th>Fil</th><th>"""+str(tracker.get_slot("fil"))+"""</th></tr>
 		</table>
 		<br>
 		<div align="center">
