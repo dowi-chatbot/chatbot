@@ -123,6 +123,14 @@
 * insultes
     - utter_insultes
 
+## ask_fonctionnalites
+* fonctionnalite
+    - utter_options
+
+## ask_aliment
+* ask_alimentation
+    - utter_ask_alimentation
+
 ## interactive_story_1
 * firstConversation
     - utter_firstgreet

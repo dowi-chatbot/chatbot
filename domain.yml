@@ -29,6 +29,8 @@ actions:
 - utter_slot_values
 - utter_thanks
 - utter_mail_updated
+- utter_ask_alimentation
+
 entities:
 - age
 - alveolite
@@ -42,6 +44,7 @@ entities:
 forms:
 - check_up_form
 - initialization_form
+- rappel_saignement_form
 intents:
 - dents_sagesse
 - affirm
@@ -74,7 +77,12 @@ intents:
 - compliments
 - "inter_g\xE9n\xE9ral"
 - next_day
+- ask_alimentation
+- fonctionnalite
 slots:
+  remind_saignement:
+    auto_fill: false
+    type: text
   age:
     auto_fill: false
     type: unfeaturized
@@ -139,9 +147,16 @@ templates:
     text: Tes fils sont-ils toujours en place ?
   utter_ask_mail:
   - text: "A quel mail souhaites-tu que nous envoyons l'avanc\xE9e de ton r\xE9tablissement\
-      \ ? Si tu n'as pas de docteur atitr\xE9, \xE9cris \\\"je n'ai pas de mail\\\""
+      \ ? Si tu n'as pas de docteur atitr\xE9, \xE9cris \"je n'ai pas de mail\""
   utter_ask_name:
   - text: Quel est ton nom ?
+  utter_ask_remind_saignement:
+  - buttons:
+    - payload: oui
+      title: oui
+    - payload: non
+      title: non
+    text: Est-ce que tes saignements sont toujours aussi abondants ?
   utter_ask_pathologie:
   - buttons:
     - payload: Dents de sagesse
@@ -159,8 +174,8 @@ templates:
   - buttons:
     - payload: Oui, un peu
       title: Oui, un peu
-    - payload: Oui, abondement
-      title: Oui, abondement
+    - payload: Oui, abondamment
+      title: Oui, abondamment
     - payload: Non
       title: Non
     text: "Pr\xE9sentes-tu des saignements ?"
@@ -232,3 +247,5 @@ templates:
   - text: "Je suis l\xE0 pour \xE7a \U0001F642"
   utter_mail_updated:
   - text: C'est fait ! Le mail enregistré est maintenant {mail} :)
+  utter_ask_alimentation:
+  - text: "Voici un guide d’alimentation suggéré pour vous aider lors de votre convalescence.\n\nPremières 24 heures : alimentation plutôt liquide\n- Potages, légumes et viande, le tout longuement bouilli et passé au mélangeur\n- Yaourts, fromages crémeux, liquides ou pâtes molles (Minigo, Vache qui rit, camembert…)\n- Crème de blé et gruau\n- Compotes de fruits frais\n- Boissons fouettées maisons (fruits frais, crème glacée, lait entier et oeufs)\n- Trucs rapides : Boost, Ensure, poudre protéinée pour boissons fouettées\n\nAu cours de la première semaine, optez pour une alimentation plutôt molle qui requiert peu de mastication :\n- Pâtes alimentaires bien cuites\n- Légumes en purée\n- Œufs bouillis ou omelette\n- Soupe avec morceaux de légumes bien cuits\n- Poisson poché\n- Pâté chinois\n- Pâté à la viande, sans la croûte (poulet, viande hachée)\n\nAprès, promis, tu pourras à nouveau croquer dans un burger 🍔"

@@ -49,6 +49,14 @@
 ## intent:checkup
 - check up
 - check up
+- Est ce qu'on peut faire un check up ?
+
+## intent:ask_alimentation
+- Alimentation
+- Qu'est ce que je peux manger ? 
+- Quel régime dois-je suivre ? 
+- As-tu des conseils alimentaires ? 
+- As-tu des idées pour le déjeuner ?
 
 ## intent:compliments
 - c'est marrant
@@ -167,7 +175,8 @@
 - [henri](name)
 - [Morgan](name)
 - [Léa](name)
-- [Olivier](name:olivier)
+- [Olivier](name)
+- [Marie-Agnès](name)
 
 ## intent:give_age
 - j'ai [18](age) ans
@@ -300,6 +309,15 @@
 - t'es chiant
 - t'es con
 
+## intent:fonctionnalite
+- Qu'est ce que tu sais faire ? 
+- Quelles sont tes fonctionnalités ? 
+- Menu général
+- de quoi es-tu capable ? 
+- Menu
+- Fonctionnalites ? 
+
+
 ## intent:inter_général
 - [général](type_intervention)
 - mon intervention est [général](type_intervention)
@@ -324,6 +342,8 @@
 - [une_adresse_mail@exemple.com](mail)
 - [henri.monta@orange.fr](mail)
 - [olivier@monmail.com](mail)
+- [henri.de_montalembert@edu.devinci.fr](mail)
+- [maylis.gross@wanadoo.fr](mail)
 
 ## intent:mood_unhappy
 - triste

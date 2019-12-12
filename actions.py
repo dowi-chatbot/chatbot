@@ -95,15 +95,35 @@ class InitializationForm(FormAction):
 class CheckUpForm(FormAction):
 	def name(self) -> Text:
 		return "check_up_form"
+	
+	@staticmethod
+	def verification(dispatcher,tracker):
+		myEvents = []
+		timer = tracker.get_slot("timer")
+		message = ""
+		if timer in [1,2,3]:
+			if str(tracker.get_slot("saignement")).lower() == "oui, abondamment":
+				myEvents.append(ReminderScheduled("rappel_saignement_form", datetime.now()+timedelta(seconds=20), kill_on_user_message=False))
+				message += "L'état de votre patient n'est pas inquiétant mais demande une attention particulière 🟠"
+		if timer in [1,2,3,4]:
+			if str(tracker.get_slot("fil")).lower() == "non":
+				message += "Nous sommes avant le J+5 de l'opération et les fils de votre patient ne sont plus en place 🔴"
+				dispatcher.utter_message('La situation devient inquiétante, il faut que tu contactes ton médecin dans les plus bref délais !')
+		
+		return myEvents , message
 
 	@staticmethod
 	def required_slots(tracker: Tracker):
 		return ["saignement", "alveolite", "fil"]
 
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
-		dispatcher.utter_message('ok')
+		
+		myEvent , message = self.verification(dispatcher,tracker)
+		print(message)
+		if message == "":
+			message = "L'état de votre patient est positif 🟢"
+		
 		mail = tracker.get_slot("mail")
-		pict = "https://media.licdn.com/dms/image/C4D0BAQFrT0693_pBGg/company-logo_400_400/0?e=1583366400&v=beta&t=XK0XWV_Y4wKwulLx27XFckq-sf2lSICjHn2GRXdoe70&fbclid=IwAR1WDvTatYNNXHD0mcKRxuysuuzQ2PH96KZuT2lZEBt53Ufx6ILzvNMR5co"
 		html = """
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
   		<title>html title</title>
@@ -117,6 +137,7 @@ class CheckUpForm(FormAction):
 		<tr><th>Fil</th><th>"""+str(tracker.get_slot("fil"))+"""</th></tr>
 		</table>
 		<br>
+		<p align="center">"""+message+"""</p>
 		<div align="center">
 		<img src="https://media.licdn.com/dms/image/C4D0BAQFrT0693_pBGg/company-logo_400_400/0?e=1583366400&v=beta&t=XK0XWV_Y4wKwulLx27XFckq-sf2lSICjHn2GRXdoe70&fbclid=IwAR1WDvTatYNNXHD0mcKRxuysuuzQ2PH96KZuT2lZEBt53Ufx6ILzvNMR5co"  width="150" height="150" > 
 		</div>
@@ -125,7 +146,7 @@ class CheckUpForm(FormAction):
 		</div>
 		"""
 		message = MIMEText(html,'html')
-		message['Subject'] = 'Checkup Dowi '
+		message['Subject'] = 'Checkup Dowi de '+str(tracker.get_slot("name"))
 		message['From'] = 'dowidowi930@gmail.com'
 		message['To'] = mail
 
@@ -136,13 +157,15 @@ class CheckUpForm(FormAction):
 			server.send_message(message)
 			server.quit()
 			dispatcher.utter_message("Check up terminé !")
-		
+			
 		except: 
 			dispatcher.utter_message("Checkup terminé ! L'adresse du médecin n'étant pas renseigné ou non valide, nous n'avons pas envoyé de rapport mail.")
-		
-		
-		return[SlotSet("saignement", None),SlotSet("alveolite", None), SlotSet("fil", None)]
-	
+		myEvent.append(SlotSet("saignement", None))
+		myEvent.append(SlotSet("alveolite", None))
+		myEvent.append(SlotSet("fil", None))
+		return myEvent
+
+
 	def slot_mappings(self):
 		return {
 			"saignement": [
@@ -155,8 +178,29 @@ class CheckUpForm(FormAction):
 				self.from_text()
 				]
 			}
-	
 
+class RappelSaignementForm(FormAction):
+	def name(self) -> Text:
+		return "rappel_saignement_form"
+
+	@staticmethod
+	def required_slots(tracker: Tracker):
+		return ["remind_saignement"]
+
+	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
+		remind_saignement = tracker.get_slot("remind_saignement")
+		myEv = []
+		if (str(remind_saignement) == "oui"):
+			dispatcher.utter_message('La situation devient inquiétante, il faut que tu contactes ton médecin dans les plus bref délais !')
+		else:
+			dispatcher.utter_message("Super, j'espère que ça ne recommencera pas :)")
+		myEv.append(SlotSet("remind_saignement",None))
+		return myEv
+	def slot_mappings(self):
+		return {
+			"remind_saignement": [
+				self.from_text()
+				]}
 
 class ActionPersoHello(Action):
 	def name(self) -> Text:
