@@ -8,5 +8,17 @@
             "type":["Preparation", "Conseils"],
             "time":-1
         }
+    ],
+    "Stresse": [
+        {
+          "text":"Une fois qu’elles auront été retirées, tu seras tranquille toute ta vie 😉 C’est un mauvais moment à passer et je vais tout faire pour que tu le vives le mieux possible !",
+          "img":""
+          
+        },
+        {
+          "text":"Pense au beau sourire que tu auras apres l’intervention 😁",
+          "img":""
+          
+        }
     ]
 }

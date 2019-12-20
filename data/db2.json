@@ -1,0 +1,171 @@
+{
+  "Conseils": [
+    {
+      "text":"Pour limiter le gonflement de ton visage, le secret et de toujours appliquer de la glace dans une poche ❄️",
+      "time":1,
+      "day":"",
+      "img":""
+      
+    },
+    {
+     "text":"Il est toujours plus difficile d’effacer la douleur lorsqu’elle est déjà installée 🤒 Mais si tu m’écoute bien et que tu prends tes antalgiques lorsque je te l’indique tu n’auras même pas mal 👏🏼",
+      "time":1,
+      "day":"",
+      "img":""
+    },
+    {
+     "text":"Les premiers jours il est conseillé de manger liquide. En plus une bonne soupe ça fait bien grandir ! 🥣  Super non ?",
+      "time":2,
+      "day":"",
+      "img":""
+    },
+    {
+     "text":"Apres un intervention sous anesthésie il est forcément déconseillé de pratiquer une activité sportive. Profite de ces quelques jours pour bien te reposer etc revenir en grande forme 🤸🏼‍♂️",
+      "time":0,
+      "day":"",
+      "img":""
+    },
+    {
+     "text":"Bien évidemment il est essentiel de ne pas fumer durant les jours suivant l’intervention. Je sais que ça peut être difficile, mais il faut laisser le temps aux plaies de cicatriser. Autrement tu augmente tes chances d’attraper une infection et personne ne souhaite que ça arrive 🦠",
+      "time":2,
+      "day":"",
+      "img":""
+    },
+    {
+     "text":"Il est recommandé de parler le moins possible durant les deux premières journées. N’oublie pas que tu es en convalescence. De cette façon, tu diminueras grandement les risques de saignements. 🙊",
+      "time":1,
+      "day":"",
+      "img":""
+    },
+    {
+     "text":"Le dentiste te mettra un coton de chaque côté vis-à-vis les sites d’extraction. Tu devras garder la bouche fermée pendant 20 minutes sur ces cotons. Il y aura alors formation de caillots sanguins. ll n’est pas du tout recommandé de remettre des cotons après votre sortie de la clinique. La pression ainsi créée risquerait de briser vos caillots sanguins.🚨",
+      "time":0,
+      "day":"",
+      "img":""
+    },
+    {
+     "text":"Après avoir enlevé les cotons, il est très important de ne pas cracher. Lorsque l’on crache cela, crée une succion et brise les caillots sanguins. Il faut donc avaler normalement sa salive. Il est très normal que la salive ait un petit goût de sang qui persistera pendant une journée ou deux. ",
+      "time":1,
+      "day":"",
+      "img":""
+    },
+    {
+     "text":"Il est très important de ne pas boire avec une paille, car cette succion pourrait briser tes caillots sanguins et entraîner des saignements. 🍹\nDe toute façon, il faut arrêter d’utiliser des pailles pour la planète 🌍",
+      "time":1,
+      "day":"",
+      "img":""
+    },
+    {
+     "text":"Il faudrait arrêter de fumer pour 3 à 4 jours après les chirurgies. L’usage de tabac est l’une des principales causes de l’alvéolite. 🚬",
+      "time":2,
+      "day":"",
+      "img":""
+    },
+    {
+     "text":"Voici un guide d’alimentation suggéré pour vous aider lors de votre convalescence.\n\nPremières 24 heures : alimentation plutôt liquide\n- Potages, légumes et viande, le tout longuement bouilli et passé au mélangeur\n- Yaourts, fromages crémeux, liquides ou pâtes molles (Minigo, Vache qui rit, camembert…)\n- Crème de blé et gruau\n- Compotes de fruits frais\n- Boissons fouettées maisons (fruits frais, crème glacée, lait entier et oeufs)\n- Trucs rapides : Boost, Ensure, poudre protéinée pour boissons fouettées\n\nAu cours de la première semaine, optez pour une alimentation plutôt molle qui requiert peu de mastication :\n- Pâtes alimentaires bien cuites\n- Légumes en purée\n- Œufs bouillis ou omelette\n- Soupe avec morceaux de légumes bien cuits\n- Poisson poché\n- Pâté chinois\n- Pâté à la viande, sans la croûte (poulet, viande hachée)\n\nAprès, promis, tu pourras à nouveau croquer dans un burger 🍔",
+      "time":2,
+      "day":"",
+      "img":""
+    }
+  ],
+  "Preparation": [
+    {
+      "text":"Tu as besoin d’être à jeun si ton intervention est programmée sous anesthésie générale. Il faut donc que t’arrêtes de manger la veille à 00h. 🍳",
+      "anesthesie":"general",
+      "day":"",
+      "img":""
+      
+    },
+    {
+      "text":"Ton opération est sous anesthésie locale, alors mange normalement ! 🍕",
+      "anesthesie":"local",
+      "day":"",
+      "img":""
+      
+    },
+    {
+      "text":"Il est fortement conseillé d’arrêter de fumer quelques jours avant l’opération, et au moins 24h avant 🚭",
+      "anesthesie":"general",
+      "day":"",
+      "img":""
+      
+    },
+    {
+      "text":"N’oublie pas de te brosser minutieusement les dents et de faire un bain de bouche avant de rendre à l’hôpital 🚰",
+      "anesthesie":"",
+      "day":"",
+      "img":""
+      
+    },
+    {
+      "text":"Il faut prévoir 4 à 5 jours d’absence scolaire ou d’interruption de travail. 🏝",
+      "anesthesie":"",
+      "day":"",
+      "img":""
+      
+    }
+  ],
+  "Stresse": [
+    {
+      "text":"Une fois qu’elles auront été retirées, tu seras tranquille toute ta vie 😉 C’est un mauvais moment à passer et je vais tout faire pour que tu le vives le mieux possible !",
+      "img":""
+      
+    },
+    {
+      "text":"Pense au beau sourire que tu auras apres l’intervention 😁",
+      "img":""
+      
+    },
+    {
+      "text":"Je vais t’accompagner dans la prise de ton traitement et tu n’auras même pas mal ! 💪🏼 Alors merci qui ?",
+      "img":""
+      
+    },
+    {
+      "text":"Vois le côté rigolo de l’histoire : tu vas ressembler à un hamster quelques heures 🐹",
+      "img":""
+      
+    },
+    {
+      "text":"Promis la glace va limiter le gonflement de ton visage et dans quelques jours ce sera de l’histoire ancienne 🌬",
+      "img":""
+      
+    },
+    {
+      "text":"En respectant la prise de tes médicaments aux bonne heures, tu ne sentiras rien 💊",
+      "img":""
+      
+    },
+    {
+      "text":"L’intervention dure moins de 30 minutes 👨🏼‍⚕️ Tu vois ce n’est rien du tout !",
+      "img":""
+      
+    },
+    {
+      "text":"Pour certaines personnes bien comprendre l’intervention peut être rassurant 👨🏼‍🏫 Je t’explique tout sur l’ablation des dents de sagesses dans l’onglet informations alors n’hésites pas !",
+      "img":""
+      
+    },
+    {
+      "text":"Tu sais ça fait beaucoup mal que ce que l’on croit. Je te le promet, et en plus je vais rester près de toi alors pas de panique 🧘🏼‍♀️",
+      "img":""
+      
+    },
+    {
+      "text":"Dans quelques jours tout ça sera de l’histoire ancienne et tu auras de belles dents toute ta vie 🦷 Alors avoue que tu as hâte finalement 😉",
+      "img":""
+      
+    },
+    {
+      "text":"Dans le processus normal de guérison, il y a 3 jours d’enflure et 3 jours pour désenfler. Après 1 semaine, ça va mieux et à la deuxième semaine, la routine alimentaire reprend normalement. Assez rapide finalement 😏",
+      "img":""
+      
+    },
+    {
+      "text":"Il est possible de prendre une médication pour calmer cette anxiété. L’Ativan est le médicament généralement utilisé, deux heures avant la chirurgie. Il est bien sûr essentiel de se faire accompagner et de ne pas conduire. L’anxiété ainsi calmée te permettra de te relaxer et de mieux tolérer l’anesthésie et le rendez-vous. Heureusement, les dents de sagesse ne repoussent pas!  💪🏼",
+      "img":""
+      
+    }
+  ]
+  
+ }

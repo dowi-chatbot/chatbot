@@ -17,11 +17,11 @@ from datetime import datetime, timedelta
 import random
 import requests
 import json
-
 import smtplib
 from email.mime.text import MIMEText
-
 import http.client
+from duckling import DucklingWrapper
+
 
 class ActionGetName(Action):
 	def name(self) -> Text:
@@ -44,20 +44,15 @@ class ActionFindMovie(Action):
 		return "action_find_movie"
 
 	def run(self, dispatcher:CollectingDispatcher, tracker: Tracker, domain):
-		conn = http.client.HTTPSConnection("api.themoviedb.org")
 
 		date_gte = datetime.now() - timedelta(days=21)
 		date_lte_string = datetime.now().strftime("%Y-%m-%d")
 		date_gte_string = date_gte.strftime("%Y-%m-%d")
-
-		url = "/3/discover/movie?primary_release_date.lte=" + date_lte_string + "&primary_release_date.gte=" + date_gte_string + "&page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=fr-FR&api_key=cf074dea94828cf86b340bef21e15941"
-
-		payload = "{}"
+		url = "https://api.themoviedb.org/3/discover/movie?primary_release_date.lte=" + date_lte_string + "&primary_release_date.gte=" + date_gte_string + "&page=1&include_video=false&include_adult=false&sort_by=popularity.desc&language=fr-FR&api_key=cf074dea94828cf86b340bef21e15941"
 
 		try:
-			conn.request("GET", url, payload)
-			res = conn.getresponse()
-			data = res.read()
+			r = requests.get(url)
+			data = r.text
 			data = json.loads(data)
 			chosen = [_ for _ in data['results'] if _['vote_average']>4]
 			rand = random.randint(0,len(chosen))
@@ -82,8 +77,15 @@ class InitializationForm(FormAction):
 		return ["name", "age", "pathologie", "type_intervention", "date", "mail"]
 
 	def submit(self, dispatcher,tracker:Tracker, domain: Dict[Text,Any]):
-		nbr_j_avant_ope = datetime.strptime(tracker.get_slot("date"),'%d/%m/%y') - datetime(datetime.now().year, datetime.now().month, datetime.now().day)
+		
 		dispatcher.utter_message("Top ! J'ai tout ce qu'il me faut.")
+
+		#d = DucklingWrapper(language="fr$core")
+		#myDate = d.parse_time(tracker.get_slot("date"))
+		#myDate = str(myDate[0]["value"]["value"].split('T')[0])
+
+		nbr_j_avant_ope = datetime.strptime(tracker.get_slot("date"),'%d/%m/%y') - datetime(datetime.now().year, datetime.now().month, datetime.now().day)
+		#dispatcher.utter_message('la date enregistrée est :'+ myDate)
 		return[SlotSet("timer",-nbr_j_avant_ope.days)]
 
 	def slot_mappings(self):
@@ -103,7 +105,7 @@ class CheckUpForm(FormAction):
 		message = ""
 		if timer in [1,2,3]:
 			if str(tracker.get_slot("saignement")).lower() == "oui, abondamment":
-				myEvents.append(ReminderScheduled("rappel_saignement_form", datetime.now()+timedelta(seconds=20), kill_on_user_message=False))
+				myEvents.append(ReminderScheduled("rappel_saignement_form", datetime.now()+timedelta(seconds=10), kill_on_user_message=False))
 				message += "L'état de votre patient n'est pas inquiétant mais demande une attention particulière 🟠"
 		if timer in [1,2,3,4]:
 			if str(tracker.get_slot("fil")).lower() == "non":
@@ -156,13 +158,13 @@ class CheckUpForm(FormAction):
 			server.login('dowidowi930@gmail.com','&dowidowi92!')
 			server.send_message(message)
 			server.quit()
-			dispatcher.utter_message("Check up terminé !")
+			dispatcher.utter_message("Check up terminé ! Un email récapitulatif du check up a été envoyé à ton medecin 😊")
 			
 		except: 
 			dispatcher.utter_message("Checkup terminé ! L'adresse du médecin n'étant pas renseigné ou non valide, nous n'avons pas envoyé de rapport mail.")
-		myEvent.append(SlotSet("saignement", None))
-		myEvent.append(SlotSet("alveolite", None))
-		myEvent.append(SlotSet("fil", None))
+			myEvent.append(SlotSet("saignement", None))
+			myEvent.append(SlotSet("alveolite", None))
+			myEvent.append(SlotSet("fil", None))
 		return myEvent
 
 
