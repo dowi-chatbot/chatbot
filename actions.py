@@ -20,7 +20,6 @@ import json
 import smtplib
 from email.mime.text import MIMEText
 import http.client
-from duckling import DucklingWrapper
 
 
 class ActionGetName(Action):

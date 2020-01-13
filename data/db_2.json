@@ -1,0 +1,21 @@
+{
+    "Conseils": [
+      {
+       "text":"Il faudrait arrêter de fumer pour 3 à 4 jours après les chirurgies. L’usage de tabac est l’une des principales causes de l’alvéolite. 🚬",
+        "time":2,
+        "day":"",
+        "img":""
+      }
+      
+    ],
+    "Preparation": [
+      {
+        "text":"Tu as besoin d’être à jeun si ton intervention est programmée sous anesthésie générale. Il faut donc que t’arrêtes de manger la veille à 00h. 🍳",
+        "anesthesie":"general",
+        "day":"",
+        "img":""
+        
+      }
+    ]
+    
+   }
