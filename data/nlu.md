@@ -123,6 +123,7 @@
 - je suis pret
 - je suis pret à commencer
 - je veux démarrer
+- on commence
 
 ## intent:gavename
 - mon nom est [Olivier](name)
