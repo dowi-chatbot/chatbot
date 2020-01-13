@@ -1,17 +1,21 @@
-# Configuration for Rasa NLU.
-# https://rasa.com/docs/rasa/nlu/components/
 language: fr
-pipeline: 
-  - name: supervised_embeddings
-
-# Configuration for Rasa Core.
-# https://rasa.com/docs/rasa/core/policies/
+pipeline:
+- name: WhitespaceTokenizer
+- name: RegexFeaturizer
+- name: CRFEntityExtractor
+- name: EntitySynonymMapper
+- name: CountVectorsFeaturizer
+- name: CountVectorsFeaturizer
+  analyzer: char_wb
+  min_ngram: 1
+  max_ngram: 4
+- name: EmbeddingIntentClassifier
 policies:
-  - name: MemoizationPolicy
-  - name: KerasPolicy
-  - name: MappingPolicy
-  - name: FormPolicy
-  - name: "FallbackPolicy"
-    nlu_threshold: 0.4
-    core_threshold: 0.3
-    fallback_action_name: "action_default_fallback"
+- name: MemoizationPolicy
+- name: KerasPolicy
+- name: MappingPolicy
+- name: FormPolicy
+- name: FallbackPolicy
+  nlu_threshold: 0.4
+  core_threshold: 0.3
+  fallback_action_name: action_default_fallback
